@@ -8,16 +8,15 @@ export class Watcher {
     private interval: number = 2500
   ) {}
 
-  async waitForVerification(): Promise<string[]> {
+  async waitForVerification(): Promise<string> {
     return tryRetry(
       async () => {
         const sms = await this.client.claimVerification();
 
-        if (sms.length == 0) {
-          throw new Error("No SMS found!");
-        }
+        const match = sms.find((message) => this.matcher(message));
+        if (!match) throw new Error("No SMS found!");
 
-        return sms.filter((message) => this.matcher(message));
+        return match;
       },
       { delay: this.interval }
     );
