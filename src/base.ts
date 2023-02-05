@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 
-export default abstract class VerificationClient {
+export abstract class VerificationClient {
   protected http: AxiosInstance = axios.create({ validateStatus: null });
   public phoneNumber: string | undefined;
 
