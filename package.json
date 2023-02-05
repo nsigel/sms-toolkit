@@ -1,6 +1,6 @@
 {
   "name": "sms-toolkit",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
@@ -9,7 +9,7 @@
     "start": "node dist/index.js",
     "dev": "yarn build && cross-env NODE_ENV=development yarn start",
     "watch": "cross-env NODE_ENV=development nodemon",
-    "format": "prettier -c --write",
+    "format": "prettier --check --write src",
     "lint": "eslint . --ext .ts",
     "prepare": "yarn build",
     "preversion": "yarn lint",
