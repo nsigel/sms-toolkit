@@ -1,4 +1,4 @@
-# 🔨 A toolbelt of SMS verification clients for Typescript.
+# 🔨 A toolkit of SMS verification clients for Typescript.
 
 This package provides simple wrappers for the usage of SMS verification clients in Node.js.
 

@@ -1,7 +1,7 @@
 {
-  "name": "sms-toolbelt",
+  "name": "sms-toolkit",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/index.js",
   "license": "MIT",
   "scripts": {
     "clean": "rimraf dist",
@@ -29,5 +29,9 @@
   },
   "files": [
     "dist/**/*"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fourwadu/sms-toolbelt.git"
+  }
 }
