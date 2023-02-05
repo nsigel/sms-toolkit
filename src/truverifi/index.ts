@@ -1,4 +1,4 @@
-import VerificationClient from "../base";
+import { VerificationClient } from "../base";
 import { ClaimResponse, AccountResponse, TruverifiError } from "./types";
 
 function truverifiErrorMessage(message: string) {

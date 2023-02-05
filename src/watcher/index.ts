@@ -1,4 +1,4 @@
-import VerificationClient from "../base";
+import { VerificationClient } from "../base";
 import { tryRetry } from "../util/helpers";
 
 export class Watcher {
