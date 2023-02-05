@@ -8,19 +8,18 @@ export class Watcher {
     private interval: number = 2500
   ) {}
 
-  async waitForVerification(): Promise<string> {
-    tryRetry(
+  async waitForVerification(): Promise<string[]> {
+    return tryRetry(
       async () => {
         const sms = await this.client.claimVerification();
 
-        if (sms.length > 0) {
-          return sms.filter((message) => this.matcher(message));
+        if (sms.length == 0) {
+          throw new Error("No SMS found!");
         }
+
+        return sms.filter((message) => this.matcher(message));
       },
       { delay: this.interval }
     );
-
-    // This should never trigger as the tryRetry will catch all errors
-    throw new Error("There was a problem waiting for verification.");
   }
 }

@@ -12,7 +12,7 @@ export const sleep = (delay: number) => new Promise((res) => setTimeout(res, del
 export const tryRetry = async <T>(
   fn: () => Promise<T>,
   { delay = 0, maxTries = Infinity, onError }: TryRetryOptions
-): Promise<T | Error> => {
+): Promise<T> => {
   for (let attempt = 1; attempt <= maxTries; attempt++) {
     try {
       const val = await fn();
@@ -24,12 +24,12 @@ export const tryRetry = async <T>(
       }
 
       if (attempt === maxTries) {
-        return err as Error;
+        throw err as Error;
       }
 
-      console.log(err);
       await sleep(delay);
     }
   }
-  return Error("Retry failed");
+
+  throw new Error("There was a problem retrying");
 };
