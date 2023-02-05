@@ -8,7 +8,7 @@ export class Watcher {
     private interval: number = 2500
   ) {}
 
-  async waitForVerification() {
+  async waitForVerification(): Promise<string> {
     tryRetry(
       async () => {
         const sms = await this.client.claimVerification();
@@ -19,5 +19,8 @@ export class Watcher {
       },
       { delay: this.interval }
     );
+
+    // This should never trigger as the tryRetry will catch all errors
+    throw new Error("There was a problem waiting for verification.");
   }
 }
