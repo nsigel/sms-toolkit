@@ -1,7 +1,7 @@
 import VerificationClient from "../base";
 import { tryRetry } from "../util/helpers";
 
-export default class Watcher {
+export class Watcher {
   constructor(
     private client: VerificationClient,
     private matcher: (message: string) => boolean = () => true,

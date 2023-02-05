@@ -14,7 +14,7 @@ function truverifiErrorMessage(message: string) {
   }
 }
 
-export default class Truverifi extends VerificationClient {
+export class Truverifi extends VerificationClient {
   constructor(apiKey: string, service: string) {
     super(apiKey, service);
     this.http.defaults.baseURL = "https://app.truverifi.com/api/";
