@@ -13,8 +13,7 @@
     "watch": "cross-env NODE_ENV=development nodemon",
     "format": "prettier --check --write src",
     "lint": "eslint . --ext .ts",
-    "prepare": "yarn build",
-    "prepublish": "yarn build && yarn gen",
+    "prepare": "yarn build && yarn gen",
     "version": "yarn format && git add -A src",
     "postversion": "git push && git push --tags"
   },
