@@ -14,7 +14,7 @@
     "format": "prettier --check --write src",
     "lint": "eslint . --ext .ts",
     "prepare": "yarn build",
-    "preversion": "yarn lint",
+    "prepublish": "yarn build && yarn gen",
     "version": "yarn format && git add -A src",
     "postversion": "git push && git push --tags"
   },
