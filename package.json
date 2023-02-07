@@ -1,6 +1,6 @@
 {
   "name": "sms-toolkit",
-  "version": "1.0.64",
+  "version": "1.0.65",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "license": "MIT",
