@@ -34,7 +34,7 @@ async function generateTruverifiTypes(): Promise<dom.EnumDeclaration> {
 
 (async () => {
   const truverifiEnum = await generateTruverifiTypes();
-  const dtsPath = path.join(__dirname, "services.d.ts");
+  const dtsPath = path.join(__dirname, "services.ts");
 
   nspace.members.push(truverifiEnum);
 
