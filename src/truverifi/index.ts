@@ -28,7 +28,7 @@ export class Truverifi extends VerificationClient {
     await this.getAccountInfo();
   }
 
-  async startVerification(): Promise<void> {
+  async startVerification(): Promise<string> {
     const { data } = await this.http.post<{ phoneNumber: string } | TruverifiError>(
       "/line/changeService",
       {
@@ -40,7 +40,7 @@ export class Truverifi extends VerificationClient {
 
     this.phoneNumber = data.phoneNumber;
 
-    return;
+    return data.phoneNumber;
   }
 
   async claimVerification(): Promise<string[]> {

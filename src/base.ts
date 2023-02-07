@@ -8,7 +8,7 @@ export abstract class VerificationClient {
 
   protected abstract authenticate(): void;
   abstract getBalance(): Promise<number>;
-  abstract startVerification(): Promise<void>;
+  abstract startVerification(): Promise<string>;
   abstract claimVerification(): Promise<string[]>;
   abstract cancelVerification(): Promise<void>;
 }

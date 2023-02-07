@@ -11,15 +11,18 @@ async function generateTruverifiTypes(): Promise<dom.EnumDeclaration> {
   const apiKey = process.env.TRUVERIFI_API_KEY;
   if (!apiKey) throw new Error("Gen: Truverifi API key not found");
 
-  const { data } = await axios.post(
+  const response = await axios.post(
     "https://app.truverifi.com/api/checkService",
     {},
     { headers: { "x-api-key": apiKey } }
   );
 
+  // Alphabetically sort services (API returns random order)
+  const data = response.data.availableServices.sort((a: string, b: string) => a.localeCompare(b));
+
   const enm = dom.create.enum("TRUVERIFI_SERVICES", undefined, dom.DeclarationFlags.Export);
 
-  data.availableServices.forEach((service: string) => {
+  data.forEach((service: string) => {
     // Make sure the service name is not all numbers
     const serviceName = !/\D/.test(service) ? `"${service}_"` : `"${service}"`;
 
