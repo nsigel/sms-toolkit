@@ -17,7 +17,7 @@ async function generateTruverifiTypes(): Promise<dom.EnumDeclaration> {
     { headers: { "x-api-key": apiKey } }
   );
 
-  const enm = dom.create.enum("TRUVERIFI", undefined, dom.DeclarationFlags.Export);
+  const enm = dom.create.enum("TRUVERIFI_SERVICES", undefined, dom.DeclarationFlags.Export);
 
   data.availableServices.forEach((service: string) => {
     // Make sure the service name is not all numbers
@@ -31,7 +31,7 @@ async function generateTruverifiTypes(): Promise<dom.EnumDeclaration> {
 
 (async () => {
   const truverifiEnum = await generateTruverifiTypes();
-  const dtsPath = path.join(__dirname, "services.ts");
+  const dtsPath = path.join(__dirname, "..", "..", "gen", "services.ts");
 
   await fs.promises.writeFile(dtsPath, dom.emit(truverifiEnum));
 })();

@@ -5,4 +5,4 @@ export { Watcher } from "./watcher";
 export { VerificationClient } from "./base";
 
 // Generated types
-export { TRUVERIFI_SERVICES } from "../gen/services";
+export { TRUVERIFI } from "../gen/services";
