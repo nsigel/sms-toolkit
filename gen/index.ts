@@ -7,9 +7,6 @@ import path from "path";
 
 dotenv.config();
 
-const nspace = dom.create.namespace("Services");
-nspace.flags = dom.DeclarationFlags.Export;
-
 async function generateTruverifiTypes(): Promise<dom.EnumDeclaration> {
   const apiKey = process.env.TRUVERIFI_API_KEY;
   if (!apiKey) throw new Error("Gen: Truverifi API key not found");
@@ -36,7 +33,5 @@ async function generateTruverifiTypes(): Promise<dom.EnumDeclaration> {
   const truverifiEnum = await generateTruverifiTypes();
   const dtsPath = path.join(__dirname, "services.ts");
 
-  nspace.members.push(truverifiEnum);
-
-  await fs.promises.writeFile(dtsPath, dom.emit(nspace));
+  await fs.promises.writeFile(dtsPath, dom.emit(truverifiEnum));
 })();
