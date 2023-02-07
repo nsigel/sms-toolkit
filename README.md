@@ -49,5 +49,5 @@ const watcher = new Watcher(client);
 const newMessage = await watcher.waitForVerification();
 ```
 ---
-Inspired by [sms](https://github.com/saucesteals/sms). Thank you Daniel!
+Inspired by [sms](https://github.com/saucesteals/sms).
 Created under the MIT license.
