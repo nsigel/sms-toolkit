@@ -13,10 +13,9 @@ export class Watcher {
       async () => {
         const sms = await this.client.claimVerification();
 
-        const match = sms.find((message) => this.matcher(message));
-        if (!match) throw new Error("No SMS found!");
+        if (!this.matcher(sms)) throw new Error("No SMS found!");
 
-        return match;
+        return sms;
       },
       { delay: this.interval }
     );
