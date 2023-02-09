@@ -1,4 +1,4 @@
-import { VerificationClient } from "../base";
+import { Service, VerificationClient } from "../base";
 import { ClaimResponse, AccountResponse, TruverifiError } from "./types";
 
 function truverifiErrorMessage(message: string) {
@@ -15,10 +15,10 @@ function truverifiErrorMessage(message: string) {
 }
 
 export class Truverifi extends VerificationClient {
-  constructor(apiKey: string, service: string) {
+  constructor(apiKey: string, service: Service) {
     super(apiKey, service);
-    this.http.defaults.baseURL = "https://app.truverifi.com/api/";
 
+    this.http.defaults.baseURL = "https://app.truverifi.com/api/";
     this.authenticate();
   }
 
@@ -43,14 +43,13 @@ export class Truverifi extends VerificationClient {
     return data.phoneNumber;
   }
 
-  async claimVerification(): Promise<string[]> {
+  async claimVerification(): Promise<string> {
     const { data } = await this.http.get<ClaimResponse | TruverifiError>("line");
 
     if ("error" in data) throw new Error(truverifiErrorMessage(data.error));
-
     if (data.sms.length == 0) throw new Error(truverifiErrorMessage("No SMS found for this line"));
 
-    return data.sms.map((message) => message.text);
+    return data.sms[0].text;
   }
 
   async cancelVerification(): Promise<void> {
